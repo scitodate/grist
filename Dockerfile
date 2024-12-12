@@ -38,6 +38,7 @@ RUN yarn run build:prod
 # Prepare material for optional pyodide sandbox
 COPY sandbox/pyodide /grist/sandbox/pyodide
 COPY sandbox/requirements3.txt /grist/sandbox/requirements3.txt
+COPY extra-requirements.txt /grist/extra-requirements.txt
 RUN \
   cd /grist/sandbox/pyodide && make setup
 
@@ -49,7 +50,7 @@ RUN \
 FROM python:3.11-slim-bookworm AS collector-py3
 ADD sandbox/requirements3.txt requirements3.txt
 RUN pip3 install -r requirements3.txt
-ADD ./extra-requirements.txt extra-requirements.txt
+ADD extra-requirements.txt extra-requirements.txt
 RUN pip3 install -r extra-requirements.txt
 
 # Fetch <shame>python2.7</shame>
