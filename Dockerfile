@@ -21,9 +21,9 @@ RUN yarn install --frozen-lockfile --verbose --network-timeout 600000
 # with merging them).
 COPY --from=ext / /grist/ext
 RUN \
- mkdir /node_modules && \
- cd /grist/ext && \
- { if [ -e package.json ] ; then yarn install --frozen-lockfile --modules-folder=/node_modules --verbose --network-timeout 600000 ; fi }
+  mkdir /node_modules && \
+  cd /grist/ext && \
+  { if [ -e package.json ] ; then yarn install --frozen-lockfile --modules-folder=/node_modules --verbose --network-timeout 600000 ; fi }
 
 # Build node code.
 COPY tsconfig.json /grist
@@ -49,7 +49,7 @@ RUN \
 FROM python:3.11-slim-bookworm AS collector-py3
 ADD sandbox/requirements3.txt requirements3.txt
 RUN pip3 install -r requirements3.txt
-ADD extra-requirements.txt extra-requirements.txt
+COPY extra-requirements.txt extra-requirements.txt
 RUN pip3 install -r extra-requirements.txt
 
 # Fetch <shame>python2.7</shame>
@@ -159,7 +159,7 @@ RUN \
 # Add a user to allow de-escalating from root on startup
 RUN useradd -ms /bin/bash grist
 ENV GRIST_DOCKER_USER=grist \
-    GRIST_DOCKER_GROUP=grist
+  GRIST_DOCKER_GROUP=grist
 WORKDIR /grist
 
 # Set some default environment variables to give a setup that works out of the box when
