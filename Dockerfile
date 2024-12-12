@@ -38,7 +38,6 @@ RUN yarn run build:prod
 # Prepare material for optional pyodide sandbox
 COPY sandbox/pyodide /grist/sandbox/pyodide
 COPY sandbox/requirements3.txt /grist/sandbox/requirements3.txt
-COPY extra-requirements.txt /grist/extra-requirements.txt
 RUN \
   cd /grist/sandbox/pyodide && make setup
 
