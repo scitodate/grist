@@ -49,7 +49,7 @@ RUN \
 FROM python:3.11-slim-bookworm AS collector-py3
 ADD sandbox/requirements3.txt requirements3.txt
 RUN pip3 install -r requirements3.txt
-ADD extra-requirements.txt
+ADD extra-requirements.txt extra-requirements.txt
 RUN pip3 install -r extra-requirements.txt
 
 # Fetch <shame>python2.7</shame>
