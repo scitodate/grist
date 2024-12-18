@@ -47,8 +47,6 @@ RUN \
 
 # Fetch python3.11
 FROM python:3.11-slim-bookworm AS collector-py3
-RUN apt update
-RUN apt install -y libssl-dev openssl libffi-dev
 ADD sandbox/requirements3.txt requirements3.txt
 RUN pip3 install -r requirements3.txt
 COPY sandbox/extra-requirements.txt extra-requirements.txt
@@ -102,9 +100,11 @@ FROM node:22-bookworm-slim
 
 # Install libexpat1, libsqlite3-0 for python3 library binary dependencies.
 # Install pgrep for managing gvisor processes.
+# Install dependencies for SSL in Python
 RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends libexpat1 libsqlite3-0 procps tini && \
+  apt-get install -y --no-install-recommends libssl-dev libffi-dev && \  
   rm -rf /var/lib/apt/lists/*
 
 # Keep all storage user may want to persist in a distinct directory
