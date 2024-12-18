@@ -48,7 +48,7 @@ RUN \
 # Fetch python3.11
 FROM python:3.11-slim-bookworm AS collector-py3
 RUN apt update
-RUN apt install -y libssl-dev libffi-dev
+RUN apt install -y libssl-dev openssl libffi-dev
 ADD sandbox/requirements3.txt requirements3.txt
 RUN pip3 install -r requirements3.txt
 COPY sandbox/extra-requirements.txt extra-requirements.txt
