@@ -373,10 +373,12 @@ export class OpenAIAssistant implements Assistant {
         'If so, your response should include the function BODY as Python code in a markdown block. ' +
         "Your response will be automatically concatenated to the code below, so you mustn't repeat any of it. " +
         'You cannot change the function signature or define additional functions or classes. ' +
-        'It should be a pure function that performs some computation and returns a result. ' +
-        'It CANNOT perform any side effects such as adding/removing/modifying rows/columns/cells/tables/etc. ' +
+        // 'It should be a pure function that performs some computation and returns a result. ' +
+        'It should be a function that does a computation and/or interacts with services and always returns a result. ' +
+        // 'It CANNOT perform any side effects such as adding/removing/modifying rows/columns/cells/tables/etc. ' +
+        'It CANNOT modify the schema such as adding/removing/modifying rows/columns/cells/tables/etc. ' +
         // 'It CANNOT interact with files/databases/networks/etc. ' +
-        'But it may interact with external services (AI services, API endpoints, data sources...). ' +
+        'It may interact with external services (AI services, API endpoints, data sources...). ' +
         'It CANNOT display images/charts/graphs/maps/etc. ' +
         'If the user asks for these things, tell them that you cannot help. ' +
         "\n\n" +
