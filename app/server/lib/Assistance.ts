@@ -376,6 +376,7 @@ export class OpenAIAssistant implements Assistant {
         'It should be a pure function that performs some computation and returns a result. ' +
         'It CANNOT perform any side effects such as adding/removing/modifying rows/columns/cells/tables/etc. ' +
         // 'It CANNOT interact with files/databases/networks/etc. ' +
+        'But it may interact with external services (AI services, API endpoints, data sources...). ' +
         'It CANNOT display images/charts/graphs/maps/etc. ' +
         'If the user asks for these things, tell them that you cannot help. ' +
         "\n\n" +
